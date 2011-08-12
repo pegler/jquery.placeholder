@@ -44,7 +44,7 @@
 						}
 					}).keyup(function() {
 						var el = $(this);
-						el.data('isEmpty', (el.val().length == 0));
+						el.data('isEmpty', (original_val_fn.apply(el,[]).length == 0));
 					}).data('gotPlaceholder', true);
 					
 					if(!$(this).val().length || $(this).val() == $(this).attr('placeholder')) {
