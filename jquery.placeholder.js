@@ -11,7 +11,7 @@
 (function($) {
 	var native_support = ('placeholder' in document.createElement('input'));
 	$.fn.placeholder = function(command) {
-		if(!native_support) {
+		if(true || !native_support) {
 			original_val_fn = $.fn.val;
 			
 			if(command) {
@@ -39,7 +39,8 @@
 					}).blur(function() {
 						var el = $(this);
 						if(el.data('isEmpty') || !el.val().length) {
-							el.val(el.attr('placeholder')).addClass('placeholder');
+							original_val_fn.apply(el,[el.attr('placeholder')])
+							el.addClass('placeholder');
 						}
 					}).keyup(function() {
 						var el = $(this);
@@ -61,6 +62,7 @@
 			
 			$.fn.val = function(a) {
 				if (arguments.length == 0 && ($(this).is('input') || $(this).is('textarea'))) {
+					console.debug($(this).data('isEmpty'))
 					if($(this).data('isEmpty'))
 						return ''
 					else
