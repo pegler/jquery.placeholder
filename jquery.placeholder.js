@@ -11,7 +11,7 @@
 (function($) {
 	var native_support = ('placeholder' in document.createElement('input'));
 	$.fn.placeholder = function(command) {
-		if(true || !native_support) {
+		if(!native_support) {
 			original_val_fn = $.fn.val;
 			
 			if(command) {
@@ -62,7 +62,6 @@
 			
 			$.fn.val = function(a) {
 				if (arguments.length == 0 && ($(this).is('input') || $(this).is('textarea'))) {
-					console.debug($(this).data('isEmpty'))
 					if($(this).data('isEmpty'))
 						return ''
 					else
