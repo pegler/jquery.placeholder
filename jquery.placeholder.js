@@ -61,6 +61,8 @@
 			});
 			
 			$.fn.val = function(a) {
+				if ($(this).attr('placeholder') == null)
+					return original_val_fn.apply(this,arguments);
 				if (arguments.length == 0 && ($(this).is('input') || $(this).is('textarea'))) {
 					if($(this).data('isEmpty'))
 						return ''
